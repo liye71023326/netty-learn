@@ -1,5 +1,6 @@
 package com.demon.netty.nio.chapter10;
 
+import com.demon.netty.Utils.OSUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -39,8 +40,9 @@ public class HttpFileServer {
                         }
                     });
 
-            ChannelFuture channelFuture = bootstrap.bind("192.168.1.104", port).sync();
-            System.out.println("Http 文件目录服务器启动， 网址 ：" + "192.168.1.104:" + port + url);
+            String ip = OSUtil.linuxLocalIp();
+            ChannelFuture channelFuture = bootstrap.bind(ip, port).sync();
+            System.out.println("Http 文件目录服务器启动， 网址 ：" + ip + ":" + port + url);
             channelFuture.channel().closeFuture().sync();
         }finally {
             bossGroup.shutdownGracefully();
