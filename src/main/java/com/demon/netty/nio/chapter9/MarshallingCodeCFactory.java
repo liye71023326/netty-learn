@@ -18,7 +18,7 @@ public final class MarshallingCodeCFactory {
      * @return
      */
     public static MarshallingDecoder buildMarshallingDecoder() {
-        final MarshallerFactory marshallerFactory = Marshalling.getMarshallerFactory("serial");
+        final MarshallerFactory marshallerFactory = Marshalling.getProvidedMarshallerFactory("serial");
         final MarshallingConfiguration configuration = new MarshallingConfiguration();
         configuration.setVersion(5);
         UnmarshallerProvider provider = new DefaultUnmarshallerProvider(marshallerFactory, configuration);
